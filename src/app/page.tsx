@@ -1,11 +1,8 @@
 
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import dynamic from 'next/dynamic';
 import type {
-  WorkoutProgram,
-  Exercise,
-  Recipe,
-  MentalExercise,
   RecipeCategory,
   WorkoutProgramId,
   ExerciseId,
@@ -23,19 +20,48 @@ import StatsCards from "@/components/dashboard/StatsCards";
 import QuickActions from "@/components/dashboard/QuickActions";
 import WorkoutSections from "@/components/dashboard/WorkoutSections";
 import MotivationCard from "@/components/dashboard/MotivationCard";
-import PersonalizedAnalysis from "@/components/dashboard/PersonalizedAnalysis";
-import HealthConnectModal from "@/components/modals/HealthConnectModal";
-
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import WorkoutDetailModal from "@/components/modals/WorkoutDetailModal";
-import ExerciseDetailModal from "@/components/modals/ExerciseDetailModal";
-import NutritionDetailModal from "@/components/modals/NutritionDetailModal";
-import RecipeDetailModal from "@/components/modals/RecipeDetailModal";
-import WaterTrackerModal from "@/components/modals/WaterTrackerModal";
-import MentalWellnessModal from "@/components/modals/MentalWellnessModal";
-import MentalExerciseDetailModal from "@/components/modals/MentalExerciseDetailModal";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load all modals
+const WorkoutDetailModal = dynamic(() => import('@/components/modals/WorkoutDetailModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const ExerciseDetailModal = dynamic(() => import('@/components/modals/ExerciseDetailModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const NutritionDetailModal = dynamic(() => import('@/components/modals/NutritionDetailModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const RecipeDetailModal = dynamic(() => import('@/components/modals/RecipeDetailModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const WaterTrackerModal = dynamic(() => import('@/components/modals/WaterTrackerModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const MentalWellnessModal = dynamic(() => import('@/components/modals/MentalWellnessModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const MentalExerciseDetailModal = dynamic(() => import('@/components/modals/MentalExerciseDetailModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const PersonalizedAnalysis = dynamic(() => import('@/components/dashboard/PersonalizedAnalysis'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
+const HealthConnectModal = dynamic(() => import('@/components/modals/HealthConnectModal'), {
+  suspense: true,
+  loading: () => <Skeleton className="w-full h-96" />
+});
 
 
 type ModalState =
@@ -196,7 +222,9 @@ export default function Home() {
 
       <Dialog open={modalState.type !== 'closed'} onOpenChange={(isOpen) => !isOpen && closeModal()}>
         <DialogContent className="bg-white/10 backdrop-blur-2xl border-white/20 text-white max-w-2xl">
-          {renderModalContent()}
+          <Suspense fallback={<Skeleton className="w-full h-96" />}>
+            {renderModalContent()}
+          </Suspense>
         </DialogContent>
       </Dialog>
     </main>
