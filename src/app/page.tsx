@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from "react";
 import type {
@@ -13,6 +14,7 @@ import type {
 } from "@/lib/types";
 
 import { appData } from "@/lib/data";
+import { useRequireAuth } from "@/hooks/use-auth";
 
 import Header from "@/components/dashboard/Header";
 import ProgressCircles from "@/components/dashboard/ProgressCircles";
@@ -44,6 +46,7 @@ type ModalState =
   | { type: "personalizedAnalysis" };
 
 export default function Home() {
+  const { user, loading } = useRequireAuth();
   const [modalState, setModalState] = useState<ModalState>({ type: "closed" });
   const [isMounted, setIsMounted] = useState(false);
 
@@ -91,7 +94,7 @@ export default function Home() {
     }
   };
   
-  if (!isMounted) {
+  if (loading || !user || !isMounted) {
      return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
         <motion.div 

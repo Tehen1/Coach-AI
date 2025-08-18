@@ -1,6 +1,8 @@
+
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
+import { AuthProvider } from "@/hooks/use-auth";
 
 export const metadata: Metadata = {
   title: "Fadma Coach AI - Personal AI Fitness Coach",
@@ -24,7 +26,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Toaster />
       </body>
     </html>
