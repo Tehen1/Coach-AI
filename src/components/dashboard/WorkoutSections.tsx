@@ -1,18 +1,18 @@
 import GlassCard from '@/components/shared/GlassCard';
-import { appData } from '@/lib/data';
-import { WorkoutProgramId } from '@/lib/types';
+import type { WorkoutProgram, WorkoutProgramId } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { PilatesIcon } from '@/components/icons';
 import { Dumbbell } from 'lucide-react';
 
 interface WorkoutSectionsProps {
+    workoutPrograms: Record<WorkoutProgramId, WorkoutProgram>;
     onProgramClick: (programId: WorkoutProgramId) => void;
 }
 
-const WorkoutSections = ({ onProgramClick }: WorkoutSectionsProps) => {
+const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsProps) => {
 
-    const pilatesPrograms = Object.entries(appData.workoutPrograms).filter(([key]) => key.includes('pilates'));
-    const otherPrograms = Object.entries(appData.workoutPrograms).filter(([key]) => !key.includes('pilates'));
+    const pilatesPrograms = Object.entries(workoutPrograms).filter(([key]) => key.includes('pilates'));
+    const otherPrograms = Object.entries(workoutPrograms).filter(([key]) => !key.includes('pilates'));
 
   return (
     <div className="space-y-6">
@@ -35,13 +35,13 @@ const WorkoutSections = ({ onProgramClick }: WorkoutSectionsProps) => {
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                     >
                         <div className="flex items-center space-x-2 mb-2">
-                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: program.color }} />
-                            <h4 className="font-semibold text-white">{program.name}</h4>
+                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: (program as WorkoutProgram).color }} />
+                            <h4 className="font-semibold text-white">{(program as WorkoutProgram).name}</h4>
                         </div>
-                        <p className="text-sm text-white/80 mb-2 h-10">{program.description}</p>
+                        <p className="text-sm text-white/80 mb-2 h-10">{(program as WorkoutProgram).description}</p>
                         <div className="flex space-x-3 text-xs text-pink-200">
-                            <span>⏱️ {program.duration}</span>
-                            <span>📊 {program.difficulty}</span>
+                            <span>⏱️ {(program as WorkoutProgram).duration}</span>
+                            <span>📊 {(program as WorkoutProgram).difficulty}</span>
                         </div>
                     </button>
                 ))}
@@ -68,13 +68,13 @@ const WorkoutSections = ({ onProgramClick }: WorkoutSectionsProps) => {
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                 >
                     <div className="flex items-center space-x-2 mb-2">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: program.color }} />
-                        <h4 className="font-semibold">{program.name}</h4>
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: (program as WorkoutProgram).color }} />
+                        <h4 className="font-semibold">{(program as WorkoutProgram).name}</h4>
                     </div>
-                    <p className="text-sm text-white/70 mb-2 h-10">{program.description}</p>
+                    <p className="text-sm text-white/70 mb-2 h-10">{(program as WorkoutProgram).description}</p>
                     <div className="flex space-x-3 text-xs text-white/60">
-                        <span>⏱️ {program.duration}</span>
-                        <span>📊 {program.difficulty}</span>
+                        <span>⏱️ {(program as WorkoutProgram).duration}</span>
+                        <span>📊 {(program as WorkoutProgram).difficulty}</span>
                     </div>
                 </button>
             ))}

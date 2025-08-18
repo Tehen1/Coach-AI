@@ -56,13 +56,15 @@ export interface WaterGlass {
     completed: boolean;
 }
 
+export interface WaterTrackerData {
+  dailyGoal: number;
+  currentIntake: number;
+  glasses: WaterGlass[];
+}
+
 export interface NutritionData {
   recipes: Record<RecipeCategory, Recipe[]>;
-  waterTracker: {
-    dailyGoal: number;
-    currentIntake: number;
-    glasses: WaterGlass[];
-  };
+  waterTracker: WaterTrackerData;
   macroTargets: {
     calories: number;
     protein: number;

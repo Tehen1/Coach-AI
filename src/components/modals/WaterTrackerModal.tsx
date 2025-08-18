@@ -1,20 +1,27 @@
+
 "use client";
 
-import { useState, useMemo } from 'react';
-import { appData } from '@/lib/data';
+import { useState, useMemo, useEffect } from 'react';
+import type { WaterTrackerData, WaterGlass } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Droplets, Check, Plus, RefreshCw, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import GlassCard from '@/components/shared/GlassCard';
 
 interface WaterTrackerModalProps {
+    waterTrackerData: WaterTrackerData;
+    onGlassesChange: (glasses: WaterGlass[]) => void;
     onBack: () => void;
     onClose: () => void;
 }
 
-const WaterTrackerModal = ({ onBack }: WaterTrackerModalProps) => {
+const WaterTrackerModal = ({ waterTrackerData, onGlassesChange, onBack }: WaterTrackerModalProps) => {
     const { toast } = useToast();
-    const [glasses, setGlasses] = useState(appData.nutritionData.waterTracker.glasses);
+    const [glasses, setGlasses] = useState(waterTrackerData.glasses);
+
+    useEffect(() => {
+        setGlasses(waterTrackerData.glasses);
+    }, [waterTrackerData.glasses]);
 
     const completedGlasses = useMemo(() => glasses.filter(g => g.completed).length, [glasses]);
     const totalGlasses = glasses.length;
@@ -25,6 +32,7 @@ const WaterTrackerModal = ({ onBack }: WaterTrackerModalProps) => {
         const wasCompleted = newGlasses[index].completed;
         newGlasses[index].completed = !newGlasses[index].completed;
         setGlasses(newGlasses);
+        onGlassesChange(newGlasses);
 
         if (!wasCompleted) {
             toast({
@@ -41,7 +49,9 @@ const WaterTrackerModal = ({ onBack }: WaterTrackerModalProps) => {
     };
     
     const resetTracker = () => {
-        setGlasses(glasses.map(g => ({ ...g, completed: false })));
+        const resetGlasses = glasses.map(g => ({ ...g, completed: false }));
+        setGlasses(resetGlasses);
+        onGlassesChange(resetGlasses);
         toast({ title: '🔄 Suivi réinitialisé.' });
     };
 
@@ -50,7 +60,7 @@ const WaterTrackerModal = ({ onBack }: WaterTrackerModalProps) => {
             <div className="text-center mb-6">
                 <Droplets className="mx-auto size-12 text-accent mb-2"/>
                 <h3 className="text-xl font-bold font-headline">Suivi Hydratation</h3>
-                <p className="text-white/80 text-sm">Objectif: {appData.nutritionData.waterTracker.dailyGoal}ml par jour</p>
+                <p className="text-white/80 text-sm">Objectif: {waterTrackerData.dailyGoal}ml par jour</p>
             </div>
 
             <div className="bg-black/20 rounded-full h-4 mb-2 overflow-hidden">

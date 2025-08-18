@@ -1,5 +1,4 @@
-import { appData } from "@/lib/data";
-import type { MentalExerciseId } from "@/lib/types";
+import type { MentalExercise, MentalExerciseId } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BrainCircuit, Smile } from "lucide-react";
@@ -7,11 +6,12 @@ import { useToast } from "@/hooks/use-toast";
 import GlassCard from "@/components/shared/GlassCard";
 
 interface MentalWellnessModalProps {
+  mentalExercises: MentalExercise[];
   onSelectExercise: (exerciseId: MentalExerciseId) => void;
   onClose: () => void;
 }
 
-const MentalWellnessModal = ({ onSelectExercise }: MentalWellnessModalProps) => {
+const MentalWellnessModal = ({ mentalExercises, onSelectExercise }: MentalWellnessModalProps) => {
     const { toast } = useToast();
 
     const handleMoodTracker = () => {
@@ -30,8 +30,8 @@ const MentalWellnessModal = ({ onSelectExercise }: MentalWellnessModalProps) => 
         </div>
         
         <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
-            {appData.mentalExercises.map((exercise) => (
-                <GlassCard key={exercise.id} className="p-4 cursor-pointer hover:border-accent/80" onClick={() => onSelectExercise(exercise.id)}>
+            {mentalExercises.map((exercise) => (
+                <GlassCard key={exercise.id} className="p-4 cursor-pointer hover:border-accent/80" onClick={() => onSelectExercise(exercise.id as MentalExerciseId)}>
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-3">
                             <span className="text-2xl">{exercise.icon}</span>
