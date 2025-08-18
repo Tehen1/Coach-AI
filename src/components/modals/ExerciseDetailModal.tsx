@@ -1,8 +1,10 @@
+
 import type { Exercise, WorkoutProgram } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import ExerciseIllustration from "@/components/shared/ExerciseIllustration";
 import { ArrowLeft, Timer, Flame, Repeat, BarChart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 interface ExerciseDetailModalProps {
   exercise: Exercise;
@@ -21,7 +23,12 @@ const ExerciseDetailModal = ({ exercise, program, onBack }: ExerciseDetailModalP
     }
 
   return (
-    <div className="p-1 max-h-[85vh] overflow-y-auto pr-2">
+    <motion.div 
+      className="p-1 max-h-[85vh] overflow-y-auto pr-2"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+    >
         <div className="mb-6">
             <div className="flex items-start space-x-4 mb-4">
                 <div className="text-4xl">{exercise.icon}</div>
@@ -65,7 +72,7 @@ const ExerciseDetailModal = ({ exercise, program, onBack }: ExerciseDetailModalP
                 <ArrowLeft className="mr-2 size-4" /> Retour
             </Button>
         </div>
-    </div>
+    </motion.div>
   );
 };
 
