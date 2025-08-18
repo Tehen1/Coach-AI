@@ -2,10 +2,10 @@
 
 import GlassCard from '@/components/shared/GlassCard';
 import { Button } from '@/components/ui/button';
-import { Dumbbell, Flower, CookingPot, BrainCircuit, Sparkles } from 'lucide-react';
+import { Dumbbell, Flower, CookingPot, BrainCircuit, Sparkles, Link } from 'lucide-react';
 import { PilatesIcon } from '@/components/icons';
 
-type ActionType = 'Programmes' | 'Pilates' | 'Recettes' | 'Analyse AI';
+type ActionType = 'Programmes' | 'Pilates' | 'Recettes' | 'Analyse AI' | 'Santé Connect';
 
 interface QuickActionsProps {
     onActionClick: (action: ActionType) => void;
@@ -18,6 +18,7 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
         { label: 'Pilates', icon: <PilatesIcon className="size-6" /> },
         { label: 'Recettes', icon: <CookingPot className="size-6" /> },
         { label: 'Analyse AI', icon: <Sparkles className="size-6" /> },
+        { label: 'Santé Connect', icon: <Link className="size-6" /> },
     ];
 
   return (
@@ -26,7 +27,7 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
         <span className="mr-2 animate-pulse">⚡</span>
         Actions Rapides
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {actions.map((action) => (
           <button
             key={action.label}
@@ -34,7 +35,7 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
             onClick={() => onActionClick(action.label)}
           >
             {action.icon}
-            <div className="text-sm font-medium text-white">{action.label}</div>
+            <div className="text-sm font-medium text-white text-center">{action.label}</div>
           </button>
         ))}
       </div>

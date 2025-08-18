@@ -24,6 +24,7 @@ import QuickActions from "@/components/dashboard/QuickActions";
 import WorkoutSections from "@/components/dashboard/WorkoutSections";
 import MotivationCard from "@/components/dashboard/MotivationCard";
 import PersonalizedAnalysis from "@/components/dashboard/PersonalizedAnalysis";
+import HealthConnectModal from "@/components/modals/HealthConnectModal";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import WorkoutDetailModal from "@/components/modals/WorkoutDetailModal";
@@ -46,7 +47,8 @@ type ModalState =
   | { type: "waterTracker" }
   | { type: "mentalWellness" }
   | { type: "mentalExerciseDetail"; exerciseId: MentalExerciseId }
-  | { type: "personalizedAnalysis" };
+  | { type: "personalizedAnalysis" }
+  | { type: "healthConnect" };
 
 export default function Home() {
   const { user, loading } = useRequireAuth();
@@ -135,6 +137,8 @@ export default function Home() {
       }
       case 'personalizedAnalysis':
         return <PersonalizedAnalysis />;
+      case 'healthConnect':
+        return <HealthConnectModal onClose={closeModal} />;
       default:
         return null;
     }
@@ -185,6 +189,7 @@ export default function Home() {
         if (action === 'Pilates') openModal({ type: 'workoutDetail', programId: 'pilates_beginner' });
         if (action === 'Recettes') openModal({ type: 'nutritionDetail', category: 'breakfast' });
         if (action === 'Analyse AI') openModal({ type: 'personalizedAnalysis' });
+        if (action === 'Santé Connect') openModal({ type: 'healthConnect' });
       }} />
       <WorkoutSections workoutPrograms={appData.workoutPrograms} onProgramClick={(programId) => openModal({ type: 'workoutDetail', programId })} />
       <MotivationCard />
