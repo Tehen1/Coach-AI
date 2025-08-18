@@ -39,7 +39,21 @@ const Header = () => {
           transition={{ duration: 0.5, type: 'spring' }}
           className="text-3xl sm:text-4xl font-bold text-white mb-2 font-headline"
         >
-          {timeOfDay}, Fadma ! 👩🏽‍🦱
+          {timeOfDay}, Fadma ! 
+           <motion.span
+              className="inline-block ml-2"
+              animate={{ 
+                rotateZ: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              👩🏽‍🦱
+            </motion.span>
         </motion.h1>
         <motion.p 
           initial={{ y: -20, opacity: 0 }}

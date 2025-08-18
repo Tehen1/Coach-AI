@@ -27,7 +27,18 @@ const MotivationCard = () => {
               />
         </div>
         <div className="relative z-10">
-            <Quote className="mx-auto size-12 text-white/20 mb-4" />
+            <motion.div
+                animate={{
+                    scale: [1, 1.1, 1],
+                }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            >
+                <Quote className="mx-auto size-12 text-white/20 mb-4" />
+            </motion.div>
             <h3 className="text-lg font-semibold text-white mb-4 font-headline">
                 Motivation du Jour
             </h3>
