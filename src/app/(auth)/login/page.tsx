@@ -74,7 +74,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
       <Card className="w-full max-w-sm bg-white/10 backdrop-blur-lg border border-white/20 text-white">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">
+          <CardTitle>
             {isLogin ? "Connexion" : "Inscription"}
           </CardTitle>
           <CardDescription className="text-white/80">
