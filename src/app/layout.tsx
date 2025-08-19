@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { Alegreya } from 'next/font/google';
+import AuthProvider from "@/components/AuthProvider";
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className={alegreya.variable}>
       <body className="font-body antialiased bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Toaster />
       </body>
     </html>

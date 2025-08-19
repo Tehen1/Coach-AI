@@ -10,6 +10,7 @@ import type {
   MentalExerciseId,
   AppData,
 } from "@/lib/types";
+import { useSession, signOut } from "next-auth/react";
 
 import Header from "@/components/dashboard/Header";
 import ProgressCircles from "@/components/dashboard/ProgressCircles";
@@ -22,6 +23,7 @@ import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { appData as initialAppData } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 
 // Lazy load all modals
 const WorkoutDetailModal = dynamic(() => import('@/components/modals/WorkoutDetailModal'), {
@@ -79,6 +81,8 @@ export default function Home() {
   const [modalState, setModalState] = useState<ModalState>({ type: "closed" });
   const [isMounted, setIsMounted] = useState(false);
   const [appData, setAppData] = useState<AppData | null>(initialAppData);
+  const { data: session } = useSession();
+
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 1500); // Simulate loading time
@@ -103,8 +107,8 @@ export default function Home() {
               }
             }
           };
-          // Here you would typically save to localStorage
-          // localStorage.setItem('appData', JSON.stringify(updatedData));
+          // Here you would typically save to a DB
+          // For now, it's just local state
           return updatedData;
         });
         toast({
@@ -193,6 +197,7 @@ export default function Home() {
   return (
     <main className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto text-white">
       <Header />
+       {session && <Button onClick={() => signOut()}>Sign Out</Button>}
       <ProgressCircles onCircleClick={(category) => {
         if (category === 'Fitness') openModal({ type: 'workoutDetail', programId: 'beginner' });
         if (category === 'Nutrition') openModal({ type: 'nutritionDetail', category: 'breakfast' });
