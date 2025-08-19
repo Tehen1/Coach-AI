@@ -11,9 +11,6 @@ import type {
   AppData,
 } from "@/lib/types";
 
-import { useRequireAuth } from "@/hooks/use-auth";
-import { getUserData, updateWaterTracker } from "@/services/user-data";
-
 import Header from "@/components/dashboard/Header";
 import ProgressCircles from "@/components/dashboard/ProgressCircles";
 import StatsCards from "@/components/dashboard/StatsCards";
@@ -24,6 +21,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { appData as initialAppData } from "@/lib/data";
 
 // Lazy load all modals
 const WorkoutDetailModal = dynamic(() => import('@/components/modals/WorkoutDetailModal'), {
@@ -77,41 +75,25 @@ type ModalState =
   | { type: "healthConnect" };
 
 export default function Home() {
-  const { user, loading } = useRequireAuth();
   const { toast } = useToast();
   const [modalState, setModalState] = useState<ModalState>({ type: "closed" });
   const [isMounted, setIsMounted] = useState(false);
-  const [appData, setAppData] = useState<AppData | null>(null);
+  const [appData, setAppData] = useState<AppData | null>(initialAppData);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 1500); // Simulate loading time
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      const fetchUserData = async () => {
-        const data = await getUserData(user.uid);
-        if (data) {
-          setAppData(data);
-        } else {
-           console.log("No user data found, should be handled by auth hook.");
-        }
-      };
-      fetchUserData();
-    }
-  }, [user]);
-
   const openModal = (state: ModalState) => setModalState(state);
   const closeModal = () => setModalState({ type: "closed" });
   
   const handleWaterGlassesChange = async (newGlasses: any) => {
-    if (user && appData) {
+    if (appData) {
       try {
-        await updateWaterTracker(user.uid, newGlasses);
         setAppData(prevData => {
           if (!prevData) return null;
-          return {
+          const updatedData = {
             ...prevData,
             nutritionData: {
               ...prevData.nutritionData,
@@ -120,7 +102,14 @@ export default function Home() {
                 glasses: newGlasses,
               }
             }
-          }
+          };
+          // Here you would typically save to localStorage
+          // localStorage.setItem('appData', JSON.stringify(updatedData));
+          return updatedData;
+        });
+        toast({
+          title: "Hydratation mise à jour!",
+          description: "Vos données ont été sauvegardées localement.",
         });
       } catch (error) {
         toast({
@@ -170,7 +159,7 @@ export default function Home() {
     }
   };
   
-  if (loading || !user || !isMounted || !appData) {
+  if (!isMounted || !appData) {
      return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
         <motion.div 
