@@ -10,7 +10,6 @@ import type {
   MentalExerciseId,
   AppData,
 } from "@/lib/types";
-import { useSession, signOut } from "next-auth/react";
 
 import Header from "@/components/dashboard/Header";
 import ProgressCircles from "@/components/dashboard/ProgressCircles";
@@ -106,7 +105,7 @@ export default function Home() {
               }
             }
           };
-          // Here you would typically save to a DB
+          // Here you would typically save to a DB or localStorage
           // For now, it's just local state
           return updatedData;
         });
