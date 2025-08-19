@@ -17,7 +17,7 @@ import StatsCards from "@/components/dashboard/StatsCards";
 import QuickActions from "@/components/dashboard/QuickActions";
 import WorkoutSections from "@/components/dashboard/WorkoutSections";
 import MotivationCard from "@/components/dashboard/MotivationCard";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -122,6 +122,40 @@ export default function Home() {
       }
     }
   };
+  
+  const getModalTitle = (): string => {
+    if (!appData || modalState.type === 'closed') return "";
+  
+    switch (modalState.type) {
+      case 'workoutDetail':
+        return appData.workoutPrograms[modalState.programId]?.name || 'Programme';
+      case 'exerciseDetail': {
+        const program = appData.workoutPrograms[modalState.programId];
+        const exercise = program?.exercises.find(ex => ex.id === modalState.exerciseId);
+        return exercise?.name || 'Exercice';
+      }
+      case 'nutritionDetail':
+        return 'Détails de Nutrition';
+      case 'recipeDetail': {
+        const recipe = appData.nutritionData.recipes[modalState.category]?.find(r => r.id === modalState.recipeId);
+        return recipe?.name || 'Recette';
+      }
+      case 'waterTracker':
+        return 'Suivi d\'Hydratation';
+      case 'mentalWellness':
+        return 'Bien-être Mental';
+      case 'mentalExerciseDetail': {
+        const exercise = appData.mentalExercises.find(ex => ex.id === modalState.exerciseId);
+        return exercise?.name || 'Exercice Mental';
+      }
+      case 'personalizedAnalysis':
+        return 'Analyse Personnalisée';
+      case 'healthConnect':
+        return 'Santé Connect';
+      default:
+        return 'Fadma Coach AI';
+    }
+  };
 
   const renderModalContent = () => {
     if (!isMounted || modalState.type === "closed" || !appData) {
@@ -213,6 +247,9 @@ export default function Home() {
 
       <Dialog open={modalState.type !== 'closed'} onOpenChange={(isOpen) => !isOpen && closeModal()}>
         <DialogContent className="bg-white/10 backdrop-blur-2xl border-white/20 text-white max-w-2xl">
+           <DialogHeader>
+            <DialogTitle className="sr-only">{getModalTitle()}</DialogTitle>
+          </DialogHeader>
           <Suspense fallback={<Skeleton className="w-full h-96" />}>
             {renderModalContent()}
           </Suspense>
