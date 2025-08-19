@@ -81,7 +81,6 @@ export default function Home() {
   const [modalState, setModalState] = useState<ModalState>({ type: "closed" });
   const [isMounted, setIsMounted] = useState(false);
   const [appData, setAppData] = useState<AppData | null>(initialAppData);
-  const { data: session } = useSession();
 
 
   useEffect(() => {
@@ -197,7 +196,6 @@ export default function Home() {
   return (
     <main className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto text-white">
       <Header />
-       {session && <Button onClick={() => signOut()}>Sign Out</Button>}
       <ProgressCircles onCircleClick={(category) => {
         if (category === 'Fitness') openModal({ type: 'workoutDetail', programId: 'beginner' });
         if (category === 'Nutrition') openModal({ type: 'nutritionDetail', category: 'breakfast' });

@@ -39,7 +39,7 @@ const Header = () => {
           transition={{ duration: 0.5, type: 'spring' }}
           className="text-3xl sm:text-4xl font-bold text-white mb-2 font-headline"
         >
-          {timeOfDay}, Fadma ! 
+          {timeOfDay} ! 
            <motion.span
               className="inline-block ml-2"
               animate={{ 
