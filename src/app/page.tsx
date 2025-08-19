@@ -246,9 +246,9 @@ export default function Home() {
       <MotivationCard />
 
       <Dialog open={modalState.type !== 'closed'} onOpenChange={(isOpen) => !isOpen && closeModal()}>
-        <DialogContent className="bg-white/10 backdrop-blur-2xl border-white/20 text-white max-w-2xl">
+        <DialogContent className="bg-white/10 backdrop-blur-2xl border-white/20 text-white max-w-2xl" data-testid="main-dialog">
            <DialogHeader>
-            <DialogTitle className="sr-only">{getModalTitle()}</DialogTitle>
+            <DialogTitle>{getModalTitle()}</DialogTitle>
           </DialogHeader>
           <Suspense fallback={<Skeleton className="w-full h-96" />}>
             {renderModalContent()}

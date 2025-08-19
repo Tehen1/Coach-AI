@@ -15,12 +15,12 @@ interface QuickActionsProps {
 
 const QuickActions = ({ onActionClick }: QuickActionsProps) => {
 
-    const actions: { label: ActionType; icon: React.ReactNode }[] = [
-        { label: 'Programmes', icon: <Dumbbell className="size-6" /> },
-        { label: 'Pilates', icon: <PilatesIcon className="size-6" /> },
-        { label: 'Recettes', icon: <CookingPot className="size-6" /> },
-        { label: 'Analyse AI', icon: <Sparkles className="size-6" /> },
-        { label: 'Santé Connect', icon: <Link className="size-6" /> },
+    const actions: { label: ActionType; icon: React.ReactNode, testId: string }[] = [
+        { label: 'Programmes', icon: <Dumbbell className="size-6" />, testId: 'quick-action-programmes' },
+        { label: 'Pilates', icon: <PilatesIcon className="size-6" />, testId: 'quick-action-pilates' },
+        { label: 'Recettes', icon: <CookingPot className="size-6" />, testId: 'quick-action-recettes' },
+        { label: 'Analyse AI', icon: <Sparkles className="size-6" />, testId: 'quick-action-analyse-ai' },
+        { label: 'Santé Connect', icon: <Link className="size-6" />, testId: 'quick-action-sante-connect' },
     ];
 
   return (
@@ -39,6 +39,7 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
         {actions.map((action, index) => (
           <motion.button
             key={action.label}
+            data-testid={action.testId}
             className="bg-white/10 border border-white/20 p-4 rounded-xl hover:bg-white/20 transition-all duration-200 flex flex-col items-center justify-center space-y-2"
             onClick={() => onActionClick(action.label)}
             initial={{ opacity: 0, y: 20 }}

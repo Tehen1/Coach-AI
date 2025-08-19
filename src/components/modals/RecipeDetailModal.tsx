@@ -1,3 +1,4 @@
+
 import type { Recipe, RecipeCategory } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -70,10 +71,10 @@ const RecipeDetailModal = ({ recipe, category, onBack }: RecipeDetailModalProps)
         )}
 
         <div className="flex flex-col sm:flex-row gap-2">
-            <Button onClick={handleAddToPlan} className="flex-1 bg-accent hover:bg-accent/90 text-primary-foreground">
+            <Button onClick={handleAddToPlan} data-testid="add-to-plan-button" className="flex-1 bg-accent hover:bg-accent/90 text-primary-foreground">
                 Ajouter au planning
             </Button>
-            <Button variant="outline" onClick={onBack} className="bg-white/20 border-white/30 hover:bg-white/30">
+            <Button variant="outline" onClick={onBack} data-testid="back-to-recipes-button" className="bg-white/20 border-white/30 hover:bg-white/30">
                 <ArrowLeft className="mr-2 size-4" /> Retour
             </Button>
         </div>

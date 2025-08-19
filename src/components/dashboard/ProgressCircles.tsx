@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -13,9 +14,10 @@ interface ProgressCircleProps {
   color: string;
   size?: number;
   onClick: () => void;
+  testId: string;
 }
 
-const ProgressCircle = ({ label, value, color, size = 140, onClick }: ProgressCircleProps) => {
+const ProgressCircle = ({ label, value, color, size = 140, onClick, testId }: ProgressCircleProps) => {
   const radius = (size - 12) / 2;
   const circumference = 2 * Math.PI * radius;
   const [offset, setOffset] = useState(circumference);
@@ -41,6 +43,7 @@ const ProgressCircle = ({ label, value, color, size = 140, onClick }: ProgressCi
     <div
       className="flex flex-col items-center space-y-2 cursor-pointer group"
       onClick={onClick}
+      data-testid={testId}
     >
       <motion.div
         className="relative transform transition-transform group-hover:scale-105"
@@ -102,9 +105,9 @@ const ProgressCircles = ({ onCircleClick }: { onCircleClick: (category: 'Fitness
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <ProgressCircle label="Fitness" value={progress.fitness} color="#3b82f6" onClick={() => onCircleClick('Fitness')} />
-            <ProgressCircle label="Nutrition" value={progress.nutrition} color="#10b981" onClick={() => onCircleClick('Nutrition')} />
-            <ProgressCircle label="Mental" value={progress.mental} color="#8b5cf6" onClick={() => onCircleClick('Mental')} />
+            <ProgressCircle label="Fitness" value={progress.fitness} color="#3b82f6" onClick={() => onCircleClick('Fitness')} testId="progress-circle-fitness" />
+            <ProgressCircle label="Nutrition" value={progress.nutrition} color="#10b981" onClick={() => onCircleClick('Nutrition')} testId="progress-circle-nutrition" />
+            <ProgressCircle label="Mental" value={progress.mental} color="#8b5cf6" onClick={() => onCircleClick('Mental')} testId="progress-circle-mental" />
         </div>
     );
 };

@@ -1,3 +1,4 @@
+
 import GlassCard from '@/components/shared/GlassCard';
 import type { WorkoutProgram, WorkoutProgramId } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -31,6 +32,7 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
                 {pilatesPrograms.map(([key, program]) => (
                     <button
                     key={key}
+                    data-testid={`program-card-${key}`}
                     className="text-left p-4 bg-white/15 rounded-lg hover:bg-white/25 transition-all duration-200 hover:scale-105 border border-pink-300/20"
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                     >
@@ -47,7 +49,7 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
                 ))}
             </div>
             <div className="mt-6 text-center">
-                <Button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform" onClick={() => onProgramClick('pilates_beginner')}>
+                <Button data-testid="start-pilates-button" className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform" onClick={() => onProgramClick('pilates_beginner')}>
                     <PilatesIcon className="mr-2 h-5 w-5" />
                     Commencer le Pilates
                 </Button>
@@ -64,6 +66,7 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
             {otherPrograms.map(([key, program]) => (
                 <button
                     key={key}
+                    data-testid={`program-card-${key}`}
                     className="text-left p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all duration-200 hover:scale-105"
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                 >

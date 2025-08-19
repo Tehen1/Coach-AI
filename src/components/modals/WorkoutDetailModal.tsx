@@ -1,3 +1,4 @@
+
 import type { WorkoutProgram, ExerciseId } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, BarChart, Timer, ChevronRight } from "lucide-react";
@@ -35,7 +36,7 @@ const WorkoutDetailModal = ({ program, onSelectExercise }: WorkoutDetailModalPro
 
         <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
             {program.exercises.map(exercise => (
-                <GlassCard key={exercise.id} className="p-3 cursor-pointer hover:border-accent/80" onClick={() => onSelectExercise(exercise.id)}>
+                <GlassCard key={exercise.id} data-testid={`exercise-card-${exercise.id}`} className="p-3 cursor-pointer hover:border-accent/80" onClick={() => onSelectExercise(exercise.id as ExerciseId)}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                             <span className="text-2xl">{exercise.icon}</span>
@@ -51,7 +52,7 @@ const WorkoutDetailModal = ({ program, onSelectExercise }: WorkoutDetailModalPro
         </div>
         
         <div className="mt-6">
-            <Button onClick={handleStartWorkout} className="w-full bg-accent hover:bg-accent/90 text-primary-foreground">
+            <Button onClick={handleStartWorkout} data-testid="start-workout-button" className="w-full bg-accent hover:bg-accent/90 text-primary-foreground">
                 <Dumbbell className="mr-2 size-4" /> Commencer l&apos;entraînement
             </Button>
         </div>

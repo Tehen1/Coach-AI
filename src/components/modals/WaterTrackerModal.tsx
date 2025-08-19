@@ -81,7 +81,7 @@ const WaterTrackerModal = ({ waterTrackerData, onGlassesChange, onBack }: WaterT
                                 <div className="text-xs text-white/70">{glass.amount}ml</div>
                             </div>
                         </div>
-                        <Button size="sm" variant={glass.completed ? "secondary" : "outline"} onClick={() => toggleGlass(index)} className={glass.completed ? "bg-green-500/80 hover:bg-green-500/90 text-white" : "bg-white/20 border-white/30 hover:bg-white/30"}>
+                        <Button size="sm" variant={glass.completed ? "secondary" : "outline"} onClick={() => toggleGlass(index)} data-testid={`water-glass-${index}`} className={glass.completed ? "bg-green-500/80 hover:bg-green-500/90 text-white" : "bg-white/20 border-white/30 hover:bg-white/30"}>
                             {glass.completed ? <Check className="size-4" /> : <Plus className="size-4" />}
                             <span className="ml-2 text-xs">{glass.completed ? 'Bu' : 'Boire'}</span>
                         </Button>
@@ -90,10 +90,10 @@ const WaterTrackerModal = ({ waterTrackerData, onGlassesChange, onBack }: WaterT
             </div>
             
             <div className="flex flex-col sm:flex-row gap-2 mt-6">
-                <Button onClick={resetTracker} variant="outline" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
+                <Button onClick={resetTracker} variant="outline" data-testid="reset-water-tracker" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
                     <RefreshCw className="mr-2 size-4" /> Réinitialiser
                 </Button>
-                <Button onClick={onBack} variant="outline" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
+                <Button onClick={onBack} variant="outline" data-testid="back-to-nutrition-button" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
                     <ArrowLeft className="mr-2 size-4" /> Retour
                 </Button>
             </div>

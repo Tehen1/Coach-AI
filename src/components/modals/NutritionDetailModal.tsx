@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import type { NutritionData, RecipeCategory, RecipeId } from "@/lib/types";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
         <Tabs defaultValue={initialCategory} className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto bg-black/20">
                 {(Object.keys(nutritionData.recipes) as RecipeCategory[]).map(cat => (
-                    <TabsTrigger key={cat} value={cat} className="flex-1 data-[state=active]:bg-accent/80 data-[state=active]:text-primary-foreground">
+                    <TabsTrigger key={cat} value={cat} data-testid={`nutrition-tab-${cat}`} className="flex-1 data-[state=active]:bg-accent/80 data-[state=active]:text-primary-foreground">
                        {categoryInfo[cat].icon} {categoryInfo[cat].name}
                     </TabsTrigger>
                 ))}
@@ -42,7 +43,7 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
                 <TabsContent key={cat} value={cat}>
                     <div className="space-y-3 max-h-80 overflow-y-auto pr-2 mt-4">
                         {nutritionData.recipes[cat].map(recipe => (
-                            <GlassCard key={recipe.id} className="p-4 cursor-pointer hover:border-accent/80" onClick={() => onSelectRecipe(cat, recipe.id as RecipeId)}>
+                            <GlassCard key={recipe.id} data-testid={`recipe-card-${recipe.id}`} className="p-4 cursor-pointer hover:border-accent/80" onClick={() => onSelectRecipe(cat, recipe.id as RecipeId)}>
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center space-x-3">
                                         <span className="text-2xl">{recipe.emoji}</span>
@@ -69,7 +70,7 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
         </Tabs>
 
         <div className="mt-6">
-            <Button onClick={onOpenWaterTracker} className="w-full bg-gradient-to-r from-blue-500 to-cyan-400">
+            <Button data-testid="open-water-tracker" onClick={onOpenWaterTracker} className="w-full bg-gradient-to-r from-blue-500 to-cyan-400">
                 <Droplets className="mr-2 size-4" /> Suivi Hydratation
             </Button>
         </div>

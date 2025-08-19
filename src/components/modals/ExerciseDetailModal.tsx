@@ -65,10 +65,10 @@ const ExerciseDetailModal = ({ exercise, program, onBack }: ExerciseDetailModalP
         </div>
         
         <div className="flex flex-col sm:flex-row gap-2 sticky bottom-0 bg-white/10 backdrop-blur-sm py-2 -mx-1 px-1">
-            <Button onClick={handleStartExercise} className="flex-1 bg-accent hover:bg-accent/90 text-primary-foreground">
+            <Button data-testid="start-exercise-button" onClick={handleStartExercise} className="flex-1 bg-accent hover:bg-accent/90 text-primary-foreground">
                 Démarrer cet exercice
             </Button>
-            <Button variant="outline" onClick={onBack} className="bg-white/20 border-white/30 hover:bg-white/30">
+            <Button data-testid="back-to-program-button" variant="outline" onClick={onBack} className="bg-white/20 border-white/30 hover:bg-white/30">
                 <ArrowLeft className="mr-2 size-4" /> Retour
             </Button>
         </div>

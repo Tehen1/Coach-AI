@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -76,7 +77,7 @@ export default function PersonalizedAnalysis() {
                 <FormItem>
                   <FormLabel>Vos objectifs fitness</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Ex: Perdre 5kg, courir un 10km..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
+                    <Textarea data-testid="ai-analysis-goals" placeholder="Ex: Perdre 5kg, courir un 10km..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,7 +90,7 @@ export default function PersonalizedAnalysis() {
                 <FormItem>
                   <FormLabel>Vos activités récentes</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Ex: 3 joggings, 2 séances de yoga..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
+                    <Textarea data-testid="ai-analysis-activity" placeholder="Ex: 3 joggings, 2 séances de yoga..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,7 +103,7 @@ export default function PersonalizedAnalysis() {
                 <FormItem>
                   <FormLabel>Qualité de votre sommeil</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Ex: 7h par nuit, réveils fréquents..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
+                    <Textarea data-testid="ai-analysis-sleep" placeholder="Ex: 7h par nuit, réveils fréquents..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,13 +116,13 @@ export default function PersonalizedAnalysis() {
                 <FormItem>
                   <FormLabel>Votre alimentation récente</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Ex: Repas équilibrés, quelques écarts sucrés..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
+                    <Textarea data-testid="ai-analysis-nutrition" placeholder="Ex: Repas équilibrés, quelques écarts sucrés..." {...field} className="bg-white/20 border-white/30 text-white placeholder:text-white/60"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isLoading} className="w-full bg-accent text-primary-foreground hover:bg-accent/90">
+            <Button type="submit" disabled={isLoading} data-testid="get-analysis-button" className="w-full bg-accent text-primary-foreground hover:bg-accent/90">
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -137,7 +138,7 @@ export default function PersonalizedAnalysis() {
           </form>
         </Form>
         {analysisResult && (
-          <div className="mt-6 space-y-4 text-sm">
+          <div className="mt-6 space-y-4 text-sm" data-testid="analysis-result">
             <div className="p-4 bg-black/20 rounded-lg">
                 <h3 className="font-bold mb-2 font-headline">💡 Idées Clés</h3>
                 <p className="text-white/90">{analysisResult.insights}</p>
