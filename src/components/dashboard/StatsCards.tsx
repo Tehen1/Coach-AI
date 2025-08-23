@@ -1,4 +1,6 @@
 
+"use client";
+
 import { Card } from '@/components/ui/card';
 import { Flame, Star, Timer, HeartPulse } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,7 +19,8 @@ const StatsCards = () => {
             <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                  whileTap={{ scale: 0.95 }}
