@@ -1,5 +1,5 @@
 
-import GlassCard from '@/components/shared/GlassCard';
+import { Card } from '@/components/ui/card';
 import type { WorkoutProgram, WorkoutProgramId } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { PilatesIcon } from '@/components/icons';
@@ -18,13 +18,13 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
   return (
     <div className="space-y-6">
         {/* Pilates Section */}
-        <GlassCard className="p-6 bg-gradient-to-r from-pink-500/20 to-purple-500/20 border-pink-300/30">
+        <Card className="p-6">
             <div className="text-center mb-6">
-                <PilatesIcon className="mx-auto size-12 text-pink-300 mb-2" />
-                <h3 className="text-2xl font-bold text-white mb-2 font-headline">
+                <PilatesIcon className="mx-auto size-12 text-pink-500 mb-2" />
+                <h3 className="text-2xl font-bold text-primary mb-2 font-headline">
                     Pilates - Spécial Femmes
                 </h3>
-                <p className="text-white/80">
+                <p className="text-foreground/80">
                     Découvrez le Pilates : renforcement, flexibilité et bien-être
                 </p>
             </div>
@@ -33,15 +33,15 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
                     <button
                     key={key}
                     data-testid={`program-card-${key}`}
-                    className="text-left p-4 bg-white/15 rounded-lg hover:bg-white/25 transition-all duration-200 hover:scale-105 border border-pink-300/20"
+                    className="text-left p-4 bg-primary/5 rounded-lg hover:bg-primary/10 transition-all duration-200 hover:scale-105 border border-primary/10"
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                     >
                         <div className="flex items-center space-x-2 mb-2">
                             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: (program as WorkoutProgram).color }} />
-                            <h4 className="font-semibold text-white">{(program as WorkoutProgram).name}</h4>
+                            <h4 className="font-semibold text-primary">{(program as WorkoutProgram).name}</h4>
                         </div>
-                        <p className="text-sm text-white/80 mb-2 h-10">{(program as WorkoutProgram).description}</p>
-                        <div className="flex space-x-3 text-xs text-pink-200">
+                        <p className="text-sm text-foreground/80 mb-2 h-10">{(program as WorkoutProgram).description}</p>
+                        <div className="flex space-x-3 text-xs text-pink-500">
                             <span>⏱️ {(program as WorkoutProgram).duration}</span>
                             <span>📊 {(program as WorkoutProgram).difficulty}</span>
                         </div>
@@ -49,16 +49,16 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
                 ))}
             </div>
             <div className="mt-6 text-center">
-                <Button data-testid="start-pilates-button" className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform" onClick={() => onProgramClick('pilates_beginner')}>
+                <Button data-testid="start-pilates-button" className="px-6 py-3 bg-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform hover:bg-pink-600" onClick={() => onProgramClick('pilates_beginner')}>
                     <PilatesIcon className="mr-2 h-5 w-5" />
                     Commencer le Pilates
                 </Button>
             </div>
-        </GlassCard>
+        </Card>
 
         {/* Other Programs */}
-        <GlassCard className="p-6">
-            <h3 className="text-xl font-semibold text-white mb-4 flex items-center font-headline">
+        <Card className="p-6">
+            <h3 className="text-xl font-semibold text-primary mb-4 flex items-center font-headline">
                 <Dumbbell className="mr-2 size-5" />
                 Autres Programmes d&apos;entraînement
             </h3>
@@ -67,22 +67,22 @@ const WorkoutSections = ({ workoutPrograms, onProgramClick }: WorkoutSectionsPro
                 <button
                     key={key}
                     data-testid={`program-card-${key}`}
-                    className="text-left p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all duration-200 hover:scale-105"
+                    className="text-left p-4 bg-primary/5 rounded-lg hover:bg-primary/10 transition-all duration-200 hover:scale-105 border-primary/10"
                     onClick={() => onProgramClick(key as WorkoutProgramId)}
                 >
                     <div className="flex items-center space-x-2 mb-2">
                         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: (program as WorkoutProgram).color }} />
-                        <h4 className="font-semibold">{(program as WorkoutProgram).name}</h4>
+                        <h4 className="font-semibold text-primary">{(program as WorkoutProgram).name}</h4>
                     </div>
-                    <p className="text-sm text-white/70 mb-2 h-10">{(program as WorkoutProgram).description}</p>
-                    <div className="flex space-x-3 text-xs text-white/60">
+                    <p className="text-sm text-foreground/70 mb-2 h-10">{(program as WorkoutProgram).description}</p>
+                    <div className="flex space-x-3 text-xs text-foreground/60">
                         <span>⏱️ {(program as WorkoutProgram).duration}</span>
                         <span>📊 {(program as WorkoutProgram).difficulty}</span>
                     </div>
                 </button>
             ))}
             </div>
-        </GlassCard>
+        </Card>
 
     </div>
   );

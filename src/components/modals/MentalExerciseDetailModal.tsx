@@ -1,3 +1,4 @@
+
 import type { MentalExercise } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,25 +21,25 @@ const MentalExerciseDetailModal = ({ exercise, onBack }: MentalExerciseDetailMod
     }
 
   return (
-    <div className="p-1">
+    <div className="p-1 max-h-[85vh] overflow-y-auto pr-4">
         <div className="mb-6">
             <div className="flex items-start space-x-4 mb-4">
                 <div className="text-4xl">{exercise.icon}</div>
                 <div>
                 <h3 className="text-xl font-bold font-headline">{exercise.name}</h3>
-                <p className="text-white/80 text-sm">{exercise.description}</p>
+                <p className="text-foreground/80 text-sm">{exercise.description}</p>
                 </div>
             </div>
-            <div className="grid grid-cols-3 gap-3 mb-4 text-xs">
-                <div className="bg-white/10 p-2 rounded-lg text-center"><Timer className="mx-auto mb-1 size-5" />{exercise.duration}</div>
-                <div className="bg-white/10 p-2 rounded-lg text-center"><BarChart className="mx-auto mb-1 size-5" />{exercise.difficulty}</div>
-                <div className="bg-white/10 p-2 rounded-lg text-center"><Tag className="mx-auto mb-1 size-5" />{exercise.category}</div>
+            <div className="flex flex-wrap gap-2 mb-4 text-xs">
+                <Badge variant="secondary"><Timer className="mr-1.5"/>{exercise.duration}</Badge>
+                <Badge variant="secondary"><BarChart className="mr-1.5"/>{exercise.difficulty}</Badge>
+                <Badge variant="secondary"><Tag className="mr-1.5"/>{exercise.category}</Badge>
             </div>
             <div className="mb-4">
                 <h4 className="font-semibold mb-2 flex items-center text-sm font-headline"><Sparkles className="size-4 mr-2 text-accent"/>Bienfaits</h4>
                 <div className="flex flex-wrap gap-2">
                 {exercise.benefits.map((benefit) => (
-                    <Badge key={benefit} variant="secondary" className="bg-purple-500/20 text-purple-200 border-purple-500/30">{benefit}</Badge>
+                    <Badge key={benefit} variant="outline" className="text-primary border-primary/50">{benefit}</Badge>
                 ))}
                 </div>
             </div>
@@ -49,7 +50,7 @@ const MentalExerciseDetailModal = ({ exercise, onBack }: MentalExerciseDetailMod
             <ol className="space-y-3 text-sm">
                 {exercise.instructions.map((instruction, index) => (
                 <li key={index} className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 bg-accent text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">{index + 1}</span>
+                    <span className="flex-shrink-0 bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">{index + 1}</span>
                     <span>{instruction}</span>
                 </li>
                 ))}
@@ -57,18 +58,18 @@ const MentalExerciseDetailModal = ({ exercise, onBack }: MentalExerciseDetailMod
         </div>
 
         {exercise.tips && (
-            <div className="bg-accent/20 border-l-4 border-accent p-4 mb-6 text-sm">
+            <div className="bg-accent/10 border-l-4 border-accent p-4 mb-6 text-sm text-accent-foreground">
                  <h4 className="font-semibold mb-1 font-headline">Conseil</h4>
                  <p>{exercise.tips}</p>
             </div>
         )}
         
-        <div className="flex flex-col sm:flex-row gap-2">
-            <Button onClick={handleStartExercise} className="flex-1 bg-accent hover:bg-accent/90 text-primary-foreground">
-                <BrainCircuit className="mr-2 size-4" /> Commencer l&apos;exercice
+        <div className="flex flex-col sm:flex-row gap-2 sticky bottom-0 bg-background/80 backdrop-blur-sm py-3 -mx-1 px-1">
+            <Button onClick={handleStartExercise} className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground">
+                <BrainCircuit className="mr-2" /> Commencer l&apos;exercice
             </Button>
-            <Button variant="outline" onClick={onBack} className="bg-white/20 border-white/30 hover:bg-white/30">
-                <ArrowLeft className="mr-2 size-4" /> Retour
+            <Button variant="outline" onClick={onBack}>
+                <ArrowLeft className="mr-2" /> Retour
             </Button>
         </div>
     </div>

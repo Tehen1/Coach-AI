@@ -52,12 +52,12 @@ const HealthConnectModal = ({ onClose }: HealthConnectModalProps) => {
 
     return (
         <div>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2 font-headline">
+            <CardHeader className="text-center">
+                <CardTitle className="flex items-center justify-center gap-2 font-headline text-primary">
                     <Link className="text-accent" />
                     Connecter vos services de santé
                 </CardTitle>
-                <CardDescription className="text-white/70">
+                <CardDescription className="text-foreground/70">
                     Synchronisez automatiquement vos données depuis Apple Health, Google Fit, etc.
                 </CardDescription>
             </CardHeader>
@@ -69,7 +69,7 @@ const HealthConnectModal = ({ onClose }: HealthConnectModalProps) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                        <Card className="bg-black/20 border-white/20">
+                        <Card className="bg-muted border">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-lg font-medium flex items-center gap-2">
                                     {service.icon} {service.name}
@@ -87,13 +87,13 @@ const HealthConnectModal = ({ onClose }: HealthConnectModalProps) => {
                                 </Button>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-xs text-white/60">Synchronisez vos pas, rythme cardiaque, sommeil, et plus.</p>
+                                <p className="text-xs text-foreground/60">Synchronisez vos pas, rythme cardiaque, sommeil, et plus.</p>
                             </CardContent>
                         </Card>
                     </motion.div>
                 ))}
                  <div className="pt-4 text-center">
-                    <Button variant="outline" onClick={onClose} className="bg-white/20 border-white/30 hover:bg-white/30">
+                    <Button variant="outline" onClick={onClose}>
                         Fermer
                     </Button>
                 </div>

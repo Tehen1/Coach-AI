@@ -1,7 +1,7 @@
 
 "use client";
 
-import GlassCard from '@/components/shared/GlassCard';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Sparkles, Quote } from 'lucide-react';
@@ -11,21 +11,7 @@ const MotivationCard = () => {
     const { toast } = useToast();
 
   return (
-    <GlassCard className="p-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600"
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                style={{ backgroundSize: '200% 200%' }}
-              />
-        </div>
+    <Card className="p-6 text-center relative overflow-hidden">
         <div className="relative z-10">
             <motion.div
                 animate={{
@@ -37,18 +23,18 @@ const MotivationCard = () => {
                     ease: "easeInOut"
                 }}
             >
-                <Quote className="mx-auto size-12 text-white/20 mb-4" />
+                <Quote className="mx-auto size-12 text-primary/10 mb-4" />
             </motion.div>
-            <h3 className="text-lg font-semibold text-white mb-4 font-headline">
+            <h3 className="text-lg font-semibold text-primary mb-4 font-headline">
                 Motivation du Jour
             </h3>
-            <blockquote className="text-white/80 italic text-lg leading-relaxed mb-4">
-                &quot;Le succès n&apos;est pas définitif, l&apos;échec n&apos;est pas fatal : c&apos;est le courage de continuer qui compte.&quot;
+            <blockquote className="text-foreground/80 italic text-lg leading-relaxed mb-4">
+                &quot;Le succès n'est pas définitif, l'échec n'est pas fatal : c'est le courage de continuer qui compte.&quot;
             </blockquote>
-            <p className="text-white/60 text-sm">- Winston Churchill</p>
+            <p className="text-foreground/60 text-sm">- Winston Churchill</p>
             <Button 
                 variant="secondary" 
-                className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform"
+                className="mt-6 bg-accent text-accent-foreground font-semibold rounded-full shadow-lg hover:scale-105 transition-transform hover:bg-accent/90"
                 onClick={() => toast({
                     title: "🔥 Tu peux le faire!",
                     description: "Reste motivée!",
@@ -58,7 +44,7 @@ const MotivationCard = () => {
                 Boost de motivation
             </Button>
         </div>
-    </GlassCard>
+    </Card>
   );
 };
 

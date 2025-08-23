@@ -6,7 +6,7 @@ import type { WaterTrackerData, WaterGlass } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Droplets, Check, Plus, RefreshCw, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import GlassCard from '@/components/shared/GlassCard';
+import { Card } from '@/components/ui/card';
 
 interface WaterTrackerModalProps {
     waterTrackerData: WaterTrackerData;
@@ -59,42 +59,42 @@ const WaterTrackerModal = ({ waterTrackerData, onGlassesChange, onBack }: WaterT
         <div className="p-1">
             <div className="text-center mb-6">
                 <Droplets className="mx-auto size-12 text-accent mb-2"/>
-                <h3 className="text-xl font-bold font-headline">Suivi Hydratation</h3>
-                <p className="text-white/80 text-sm">Objectif: {waterTrackerData.dailyGoal}ml par jour</p>
+                <h3 className="text-xl font-bold font-headline text-primary">Suivi Hydratation</h3>
+                <p className="text-foreground/80 text-sm">Objectif: {waterTrackerData.dailyGoal}ml par jour</p>
             </div>
 
-            <div className="bg-black/20 rounded-full h-4 mb-2 overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
+            <div className="bg-muted rounded-full h-4 mb-2 overflow-hidden">
+                <div className="bg-blue-500 h-full rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
             </div>
             <div className="text-center mb-6">
                 <span className="font-bold">{completedGlasses}/{totalGlasses}</span>
-                <span className="text-sm text-white/70 ml-1">verres bus</span>
+                <span className="text-sm text-foreground/70 ml-1">verres bus</span>
             </div>
 
-            <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
+            <div className="space-y-2 max-h-64 overflow-y-auto pr-4">
                 {glasses.map((glass, index) => (
-                    <GlassCard key={index} className="p-3 flex items-center justify-between">
+                    <Card key={index} className="p-3 flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                             <span className="text-2xl">{glass.completed ? '💧' : '🥛'}</span>
                             <div>
                                 <div className="font-medium text-sm">{glass.time}</div>
-                                <div className="text-xs text-white/70">{glass.amount}ml</div>
+                                <div className="text-xs text-foreground/70">{glass.amount}ml</div>
                             </div>
                         </div>
-                        <Button size="sm" variant={glass.completed ? "secondary" : "outline"} onClick={() => toggleGlass(index)} data-testid={`water-glass-${index}`} className={glass.completed ? "bg-green-500/80 hover:bg-green-500/90 text-white" : "bg-white/20 border-white/30 hover:bg-white/30"}>
-                            {glass.completed ? <Check className="size-4" /> : <Plus className="size-4" />}
+                        <Button size="sm" variant={glass.completed ? "default" : "outline"} onClick={() => toggleGlass(index)} data-testid={`water-glass-${index}`} className={glass.completed ? "bg-green-600 hover:bg-green-700" : ""}>
+                            {glass.completed ? <Check /> : <Plus />}
                             <span className="ml-2 text-xs">{glass.completed ? 'Bu' : 'Boire'}</span>
                         </Button>
-                    </GlassCard>
+                    </Card>
                 ))}
             </div>
             
             <div className="flex flex-col sm:flex-row gap-2 mt-6">
-                <Button onClick={resetTracker} variant="outline" data-testid="reset-water-tracker" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
-                    <RefreshCw className="mr-2 size-4" /> Réinitialiser
+                <Button onClick={resetTracker} variant="outline" data-testid="reset-water-tracker" className="flex-1">
+                    <RefreshCw className="mr-2" /> Réinitialiser
                 </Button>
-                <Button onClick={onBack} variant="outline" data-testid="back-to-nutrition-button" className="flex-1 bg-white/20 border-white/30 hover:bg-white/30">
-                    <ArrowLeft className="mr-2 size-4" /> Retour
+                <Button onClick={onBack} variant="outline" data-testid="back-to-nutrition-button" className="flex-1">
+                    <ArrowLeft className="mr-2" /> Retour
                 </Button>
             </div>
         </div>

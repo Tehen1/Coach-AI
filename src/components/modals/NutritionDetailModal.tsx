@@ -3,8 +3,8 @@ import { useState } from "react";
 import type { NutritionData, RecipeCategory, RecipeId } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Droplets, Apple, Beef, Sandwich, Cookie } from "lucide-react";
-import GlassCard from "@/components/shared/GlassCard";
+import { Droplets, Apple, Beef, Sandwich, Cookie, ChevronRight } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 interface NutritionDetailModalProps {
   nutritionData: NutritionData;
@@ -26,14 +26,14 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
   return (
     <div className="p-1">
         <div className="text-center mb-6">
-            <h3 className="text-xl font-bold font-headline">🥗 Nutrition</h3>
-            <p className="text-white/80 text-sm">Découvrez des recettes saines et délicieuses</p>
+            <h3 className="text-xl font-bold font-headline text-primary">🥗 Nutrition</h3>
+            <p className="text-foreground/80 text-sm">Découvrez des recettes saines et délicieuses</p>
         </div>
         
         <Tabs defaultValue={initialCategory} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto bg-black/20">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
                 {(Object.keys(nutritionData.recipes) as RecipeCategory[]).map(cat => (
-                    <TabsTrigger key={cat} value={cat} data-testid={`nutrition-tab-${cat}`} className="flex-1 data-[state=active]:bg-accent/80 data-[state=active]:text-primary-foreground">
+                    <TabsTrigger key={cat} value={cat} data-testid={`nutrition-tab-${cat}`} className="flex-1">
                        {categoryInfo[cat].icon} {categoryInfo[cat].name}
                     </TabsTrigger>
                 ))}
@@ -41,28 +41,24 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
 
             {(Object.keys(nutritionData.recipes) as RecipeCategory[]).map(cat => (
                 <TabsContent key={cat} value={cat}>
-                    <div className="space-y-3 max-h-80 overflow-y-auto pr-2 mt-4">
+                    <div className="space-y-3 max-h-80 overflow-y-auto pr-4 mt-4">
                         {nutritionData.recipes[cat].map(recipe => (
-                            <GlassCard key={recipe.id} data-testid={`recipe-card-${recipe.id}`} className="p-4 cursor-pointer hover:border-accent/80" onClick={() => onSelectRecipe(cat, recipe.id as RecipeId)}>
-                                <div className="flex items-center justify-between mb-2">
+                            <Card key={recipe.id} data-testid={`recipe-card-${recipe.id}`} className="p-4 cursor-pointer hover:shadow-md transition-shadow" onClick={() => onSelectRecipe(cat, recipe.id as RecipeId)}>
+                                <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
                                         <span className="text-2xl">{recipe.emoji}</span>
-                                        <h4 className="font-semibold text-base">{recipe.name}</h4>
+                                        <div>
+                                            <h4 className="font-semibold text-base">{recipe.name}</h4>
+                                            <div className="text-xs text-foreground/70">
+                                                <span>⏱️ {recipe.time}</span>
+                                                <span className="mx-1">·</span>
+                                                <span>🔥 {recipe.calories} cal</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="text-right text-xs">
-                                        <div className="text-white/70">⏱️ {recipe.time}</div>
-                                        <div className="text-white/50">{recipe.calories} cal</div>
-                                    </div>
+                                    <ChevronRight className="text-foreground/30 size-5"/>
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex space-x-3 text-xs text-white/70">
-                                        <span>P: {recipe.macros.protein}g</span>
-                                        <span>G: {recipe.macros.carbs}g</span>
-                                        <span>L: {recipe.macros.fat}g</span>
-                                    </div>
-                                    <span className="text-xs text-accent/80">Voir recette →</span>
-                                </div>
-                            </GlassCard>
+                            </Card>
                         ))}
                     </div>
                 </TabsContent>
@@ -70,8 +66,8 @@ const NutritionDetailModal = ({ nutritionData, initialCategory, onSelectRecipe, 
         </Tabs>
 
         <div className="mt-6">
-            <Button data-testid="open-water-tracker" onClick={onOpenWaterTracker} className="w-full bg-gradient-to-r from-blue-500 to-cyan-400">
-                <Droplets className="mr-2 size-4" /> Suivi Hydratation
+            <Button data-testid="open-water-tracker" onClick={onOpenWaterTracker} className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                <Droplets className="mr-2" /> Suivi Hydratation
             </Button>
         </div>
     </div>

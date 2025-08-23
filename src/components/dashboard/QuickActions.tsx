@@ -1,8 +1,7 @@
 
 "use client";
 
-import GlassCard from '@/components/shared/GlassCard';
-import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Dumbbell, Flower, CookingPot, BrainCircuit, Sparkles, Link } from 'lucide-react';
 import { PilatesIcon } from '@/components/icons';
 import { motion } from 'framer-motion';
@@ -19,13 +18,13 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
         { label: 'Programmes', icon: <Dumbbell className="size-6" />, testId: 'quick-action-programmes' },
         { label: 'Pilates', icon: <PilatesIcon className="size-6" />, testId: 'quick-action-pilates' },
         { label: 'Recettes', icon: <CookingPot className="size-6" />, testId: 'quick-action-recettes' },
-        { label: 'Analyse AI', icon: <Sparkles className="size-6" />, testId: 'quick-action-analyse-ai' },
+        { label: 'Analyse AI', icon: <Sparkles className="size-6 text-accent" />, testId: 'quick-action-analyse-ai' },
         { label: 'Santé Connect', icon: <Link className="size-6" />, testId: 'quick-action-sante-connect' },
     ];
 
   return (
-    <GlassCard className="p-6">
-      <h3 className="text-xl font-semibold text-white mb-4 flex items-center font-headline">
+    <Card className="p-6">
+      <h3 className="text-xl font-semibold text-primary mb-4 flex items-center font-headline">
         <motion.span 
           animate={{ scale: [1, 1.2, 1]}}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -40,7 +39,7 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
           <motion.button
             key={action.label}
             data-testid={action.testId}
-            className="bg-white/10 border border-white/20 p-4 rounded-xl hover:bg-white/20 transition-all duration-200 flex flex-col items-center justify-center space-y-2"
+            className="bg-primary/5 border border-primary/10 p-4 rounded-xl hover:bg-primary/10 transition-all duration-200 flex flex-col items-center justify-center space-y-2 text-primary"
             onClick={() => onActionClick(action.label)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,11 +48,11 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
             whileTap={{ scale: 0.95 }}
           >
             {action.icon}
-            <div className="text-sm font-medium text-white text-center">{action.label}</div>
+            <div className="text-sm font-medium text-center">{action.label}</div>
           </motion.button>
         ))}
       </div>
-    </GlassCard>
+    </Card>
   );
 };
 

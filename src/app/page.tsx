@@ -215,23 +215,23 @@ export default function Home() {
   
   if (!isMounted || !appData) {
      return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-center text-white"
+          className="text-center text-primary"
         >
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mb-6 mx-auto"
+            className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto"
           >
             <span className="text-4xl">👩🏽‍🦱</span>
           </motion.div>
-          <h1 className="text-4xl font-headline font-bold mb-2">Fadma Coach AI</h1>
-          <p className="text-white/70 text-lg">Votre coach personnel IA 🏋️🥗🧘</p>
-          <div className="mt-8 w-48 h-1 bg-white/20 rounded-full mx-auto overflow-hidden">
+          <h1 className="text-4xl font-headline font-bold mb-2 text-primary">Fadma Coach AI</h1>
+          <p className="text-primary/70 text-lg">Votre coach personnel IA 🏋️🥗🧘</p>
+          <div className="mt-8 w-48 h-1 bg-primary/10 rounded-full mx-auto overflow-hidden">
             <motion.div
               className="h-full bg-accent"
               initial={{ width: 0 }}
@@ -245,7 +245,7 @@ export default function Home() {
   }
 
   return (
-    <main className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto text-white">
+    <main className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
       <Header />
       <ProgressCircles onCircleClick={(category) => {
         if (category === 'Fitness') openModal({ type: 'workoutDetail', programId: 'beginner' });
@@ -264,7 +264,7 @@ export default function Home() {
       <MotivationCard />
 
       <Dialog open={modalState.type !== 'closed'} onOpenChange={(isOpen) => !isOpen && closeModal()}>
-        <DialogContent className="bg-white/10 backdrop-blur-2xl border-white/20 text-white max-w-2xl" data-testid="main-dialog">
+        <DialogContent className="bg-background text-foreground max-w-2xl" data-testid="main-dialog">
            <DialogHeader>
             <DialogTitle>{getModalTitle()}</DialogTitle>
           </DialogHeader>
