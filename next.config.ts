@@ -8,16 +8,12 @@ const securityHeaders = [
   },
   {
     key: 'X-Frame-Options',
-    value: 'DENY', // Rendu plus strict
+    value: 'DENY',
   },
   {
     key: 'X-XSS-Protection',
     value: '1; mode=block',
   },
-  {
-    key: 'Content-Security-Policy',
-    value: "frame-ancestors 'none'", // Empêche le clickjacking
-  }
 ];
 
 
