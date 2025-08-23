@@ -75,17 +75,41 @@ type ModalState =
   | { type: "personalizedAnalysis" }
   | { type: "healthConnect" };
 
+const LOCAL_STORAGE_KEY = 'fadmaCoachAppData';
+
 export default function Home() {
   const { toast } = useToast();
   const [modalState, setModalState] = useState<ModalState>({ type: "closed" });
   const [isMounted, setIsMounted] = useState(false);
-  const [appData, setAppData] = useState<AppData | null>(initialAppData);
+  const [appData, setAppData] = useState<AppData | null>(null);
 
-
+  // Load data from localStorage on mount
   useEffect(() => {
-    const timer = setTimeout(() => setIsMounted(true), 1500); // Simulate loading time
+    try {
+      const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (savedData) {
+        setAppData(JSON.parse(savedData));
+      } else {
+        setAppData(initialAppData);
+      }
+    } catch (error) {
+      console.error("Failed to load data from localStorage:", error);
+      setAppData(initialAppData);
+    }
+    const timer = setTimeout(() => setIsMounted(true), 500); // Shorter loading time
     return () => clearTimeout(timer);
   }, []);
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    if (appData) {
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appData));
+      } catch (error) {
+        console.error("Failed to save data to localStorage:", error);
+      }
+    }
+  }, [appData]);
 
   const openModal = (state: ModalState) => setModalState(state);
   const closeModal = () => setModalState({ type: "closed" });
@@ -95,7 +119,7 @@ export default function Home() {
       try {
         setAppData(prevData => {
           if (!prevData) return null;
-          const updatedData = {
+          return {
             ...prevData,
             nutritionData: {
               ...prevData.nutritionData,
@@ -105,14 +129,8 @@ export default function Home() {
               }
             }
           };
-          // Here you would typically save to a DB or localStorage
-          // For now, it's just local state
-          return updatedData;
         });
-        toast({
-          title: "Hydratation mise à jour!",
-          description: "Vos données ont été sauvegardées localement.",
-        });
+        // Toast is now triggered inside the WaterTrackerModal for immediate feedback
       } catch (error) {
         toast({
           variant: "destructive",
@@ -258,3 +276,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
