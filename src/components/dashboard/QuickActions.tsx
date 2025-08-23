@@ -12,6 +12,29 @@ interface QuickActionsProps {
     onActionClick: (action: ActionType) => void;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+    },
+  },
+};
+
 const QuickActions = ({ onActionClick }: QuickActionsProps) => {
 
     const actions: { label: ActionType; icon: React.ReactNode, testId: string }[] = [
@@ -34,24 +57,27 @@ const QuickActions = ({ onActionClick }: QuickActionsProps) => {
         </motion.span>
         Actions Rapides
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        {actions.map((action, index) => (
+      <motion.div 
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {actions.map((action) => (
           <motion.button
             key={action.label}
             data-testid={action.testId}
             className="bg-primary/5 border border-primary/10 p-4 rounded-xl hover:bg-primary/10 transition-all duration-200 flex flex-col items-center justify-center space-y-2 text-primary"
             onClick={() => onActionClick(action.label)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
-            whileHover={{ scale: 1.05, y: -5 }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.08, y: -5, transition: { type: 'spring', stiffness: 250 } }}
             whileTap={{ scale: 0.95 }}
           >
             {action.icon}
             <div className="text-sm font-medium text-center">{action.label}</div>
           </motion.button>
         ))}
-      </div>
+      </motion.div>
     </Card>
   );
 };
