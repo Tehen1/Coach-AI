@@ -1,21 +1,28 @@
 {
-  "name": "Fadma Coach AI",
-  "short_name": "Fadma Coach",
-  "description": "Votre coach personnel IA pour fitness, nutrition et bien-être mental.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#F5F5F5",
-  "theme_color": "#4B0082",
+  "name": "YourCoachAi - Personal AI Fitness Coach",
+  "short_name": "YourCoachAi",
+  "description": "Votre coach personnel IA pour fitness, nutrition et bien-être mental. Programmes personnalisés, suivi en temps réel et motivation quotidienne.",
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512x512.png",
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/maskable_icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "theme_color": "#4B0082",
+  "background_color": "#f5f5f5",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
 }

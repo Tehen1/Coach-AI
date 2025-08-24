@@ -29,7 +29,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator) {
+              if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.location.protocol === 'https:') {
                 window.addEventListener('load', () => {
                   navigator.serviceWorker.register('/service-worker.js')
                     .then(registration => {
