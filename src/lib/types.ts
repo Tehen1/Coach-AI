@@ -15,6 +15,7 @@ export interface Exercise {
   sets: number;
   description: string;
   instructions: string[];
+  imageUrl?: string;
 }
 
 export type WorkoutProgramId = 

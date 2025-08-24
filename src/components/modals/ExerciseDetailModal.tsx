@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 import type { Exercise, WorkoutProgram } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import ExerciseIllustration from "@/components/shared/ExerciseIllustration";
@@ -79,8 +79,19 @@ const ExerciseDetailModal = ({ exercise, program, onBack }: ExerciseDetailModalP
 
         <motion.div variants={itemVariants} className="mb-6">
           <h4 className="font-semibold mb-2 text-base font-headline">Démonstration Visuelle</h4>
-          <div className="p-2 bg-muted rounded-lg">
-             <ExerciseIllustration exerciseId={exercise.id} />
+          <div className="p-2 bg-muted rounded-lg overflow-hidden">
+             {exercise.imageUrl ? (
+                <Image 
+                    src={exercise.imageUrl} 
+                    alt={`Illustration pour ${exercise.name}`}
+                    width={600}
+                    height={400}
+                    data-ai-hint={`${exercise.name.split(' ')[0].toLowerCase()} exercise`}
+                    className="w-full h-auto rounded-md object-cover"
+                />
+             ) : (
+                <ExerciseIllustration exerciseId={exercise.id} />
+             )}
           </div>
         </motion.div>
 

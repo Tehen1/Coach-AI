@@ -24,6 +24,7 @@ export const appData: AppData = {
             "Basculement du bassin - 8 répétitions",
             "Étirement de la colonne vertébrale",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_hundred",
@@ -40,6 +41,7 @@ export const appData: AppData = {
             "5 respirations = 10 pompages",
             "Répéter 10 fois (100 pompages total)",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_roll_up",
@@ -56,6 +58,7 @@ export const appData: AppData = {
             "Redescendre lentement",
             "6-8 répétitions lentes",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_single_leg",
@@ -72,6 +75,7 @@ export const appData: AppData = {
             "Changer de jambe",
             "Garder le bassin stable",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_plank",
@@ -87,6 +91,7 @@ export const appData: AppData = {
             "Focus sur la respiration",
             "Répéter 4 fois avec pauses",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_stretching",
@@ -102,6 +107,7 @@ export const appData: AppData = {
             "Twist spinal doux",
             "Savasana final - 2 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
@@ -126,6 +132,7 @@ export const appData: AppData = {
             "Bird dog - 2 min chaque côté",
             "Activation des abdominaux profonds",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_teaser",
@@ -142,6 +149,7 @@ export const appData: AppData = {
             "Rouler jusqu'aux épaules",
             "Revenir en contrôle",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_saw",
@@ -158,6 +166,7 @@ export const appData: AppData = {
             "Alterner droite et gauche",
             "6 répétitions de chaque côté",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_swan",
@@ -174,6 +183,7 @@ export const appData: AppData = {
             "Contrôler le mouvement",
             "8-10 répétitions fluides",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
          {
           id: "pilates_corkscrew",
@@ -190,6 +200,7 @@ export const appData: AppData = {
             "Contrôler avec les abdos",
             "5 cercles dans chaque sens",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_cool_down_int",
@@ -205,6 +216,7 @@ export const appData: AppData = {
             "Spinal twist allongé",
             "Relaxation finale avec respiration",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
@@ -229,6 +241,7 @@ export const appData: AppData = {
             "Roll over preparation",
             "Thoracic spine mobilization",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_control_balance",
@@ -245,6 +258,7 @@ export const appData: AppData = {
             "Maintenir l'équilibre",
             "Contrôle total du mouvement",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_boomerang",
@@ -261,6 +275,7 @@ export const appData: AppData = {
             "Dive forward avec bras",
             "Fluidité et contrôle requis",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_snake_twist",
@@ -277,6 +292,7 @@ export const appData: AppData = {
             "Maintenir la ligne latérale",
             "Alternance des côtés",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_star",
@@ -293,6 +309,7 @@ export const appData: AppData = {
             "Maintenir 30 sec minimum",
             "Contrôle et stabilité maximale",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "pilates_integration",
@@ -309,6 +326,7 @@ export const appData: AppData = {
             "Méditation en mouvement",
             "Connection corps-esprit",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
@@ -333,6 +351,7 @@ export const appData: AppData = {
             "Rotation des hanches - 30 sec",
             "Étirements dynamiques - 2 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "bodyweight",
@@ -348,6 +367,7 @@ export const appData: AppData = {
             "Planche - 3x30 sec",
             "Fentes alternées - 3x10 chaque jambe",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "cardio",
@@ -363,6 +383,7 @@ export const appData: AppData = {
             "Talons-fesses - 1 min",
             "Retour au calme - 3 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "stretch",
@@ -378,6 +399,7 @@ export const appData: AppData = {
             "Étirement du dos - 2 min",
             "Relaxation finale - 1 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
@@ -402,6 +424,7 @@ export const appData: AppData = {
             "Mouvements articulaires - 3 min",
             "Activation musculaire - 2 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "strength",
@@ -418,6 +441,7 @@ export const appData: AppData = {
             "Mountain climbers - 4x20",
             "Gainage latéral - 4x30 sec chaque côté",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "hiit",
@@ -433,6 +457,7 @@ export const appData: AppData = {
             "Circuit 3: 30 sec effort / 30 sec repos",
             "Exercices: Burpees, Jump squats, High knees, Plank jacks",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "recovery",
@@ -447,6 +472,7 @@ export const appData: AppData = {
             "Étirements profonds - 5 min",
             "Respiration contrôlée - 2 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
@@ -470,6 +496,7 @@ export const appData: AppData = {
             "Mobilité dynamique - 4 min",
             "Activation neuromusculaire - 3 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "strength_adv",
@@ -486,6 +513,7 @@ export const appData: AppData = {
             "Muscle-ups - 5x3",
             "Dragon flag - 5x8",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "conditioning",
@@ -501,6 +529,7 @@ export const appData: AppData = {
             "Tabata 3: Box jumps - 4 min",
             "Finisher: Sprint intervals - 8 min",
           ],
+          imageUrl: "https://placehold.co/600x400.png",
         },
         {
           id: "recovery_adv",
@@ -511,6 +540,7 @@ export const appData: AppData = {
           sets: 1,
           description: "Régénération complète",
           instructions: ["Yoga flow - 8 min", "Étirements PNF - 6 min", "Méditation - 4 min"],
+          imageUrl: "https://placehold.co/600x400.png",
         },
       ],
     },
