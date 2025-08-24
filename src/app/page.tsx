@@ -75,7 +75,7 @@ type ModalState =
   | { type: "personalizedAnalysis" }
   | { type: "healthConnect" };
 
-const LOCAL_STORAGE_KEY = 'fadmaCoachAppData';
+const LOCAL_STORAGE_KEY = 'yourCoachAiAppData';
 
 export default function Home() {
   const { toast } = useToast();
@@ -171,7 +171,7 @@ export default function Home() {
       case 'healthConnect':
         return 'Santé Connect';
       default:
-        return 'Fadma Coach AI';
+        return 'YourCoachAi';
     }
   };
 
@@ -229,7 +229,7 @@ export default function Home() {
           >
             <span className="text-4xl">👩🏽‍🦱</span>
           </motion.div>
-          <h1 className="text-4xl font-headline font-bold mb-2 text-primary">Fadma Coach AI</h1>
+          <h1 className="text-4xl font-headline font-bold mb-2 text-primary">YourCoachAi</h1>
           <p className="text-primary/70 text-lg">Votre coach personnel IA 🏋️🥗🧘</p>
           <div className="mt-8 w-48 h-1 bg-primary/10 rounded-full mx-auto overflow-hidden">
             <motion.div

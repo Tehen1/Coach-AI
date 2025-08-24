@@ -11,7 +11,7 @@ const alegreya = Alegreya({
 });
 
 export const metadata: Metadata = {
-  title: "Fadma Coach AI - Personal AI Fitness Coach",
+  title: "YourCoachAi - Personal AI Fitness Coach",
   description:
     "Votre coach personnel IA pour fitness, nutrition et bien-être mental. Programmes personnalisés, suivi en temps réel et motivation quotidienne.",
   manifest: "/manifest.json",

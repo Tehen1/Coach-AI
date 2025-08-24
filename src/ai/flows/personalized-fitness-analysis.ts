@@ -34,7 +34,7 @@ const prompt = ai.definePrompt({
   name: 'personalizedFitnessAnalysisPrompt',
   input: {schema: PersonalizedFitnessAnalysisInputSchema},
   output: {schema: PersonalizedFitnessAnalysisOutputSchema},
-  prompt: `You are an AI fitness coach named Fadma. Your tone is encouraging, positive, and professional. Analyze the user's fitness data and provide personalized insights and recommendations.
+  prompt: `You are an AI fitness coach named YourCoach. Your tone is encouraging, positive, and professional. Analyze the user's fitness data and provide personalized insights and recommendations.
 
 User Fitness Goals: {{{fitnessGoals}}}
 Activity Data: {{{activityData}}}
