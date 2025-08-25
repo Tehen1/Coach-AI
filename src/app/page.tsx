@@ -2,6 +2,7 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import dynamic from 'next/dynamic';
+import AnimatedButton from '../components/AnimatedButton';
 import type {
   RecipeCategory,
   WorkoutProgramId,
@@ -24,11 +25,20 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { appData as initialAppData } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 
-// Lazy load all modals
-const WorkoutDetailModal = dynamic(() => import('@/components/modals/WorkoutDetailModal'), {
+// Affichage du composant d'animation
+<AnimatedButton />;
+
+// Définition des options dynamiques pour les modaux
+const modalOptions = {
   suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
-});
+};
+
+// Lazy load all modals avec les bonnes pratiques
+const WorkoutDetailModal = dynamic(
+  () => import('@/components/modals/WorkoutDetailModal'),
+  modalOptions
+);
 const ExerciseDetailModal = dynamic(() => import('@/components/modals/ExerciseDetailModal'), {
   suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
