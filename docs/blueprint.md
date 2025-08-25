@@ -1,4 +1,4 @@
-# **App Name**: Fadma Coach AI
+# **App Name**: YourCoach AI
 
 ## Core Features:
 
