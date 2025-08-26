@@ -1,8 +1,6 @@
-
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import dynamic from 'next/dynamic';
-import AnimatedButton from '../components/AnimatedButton';
 import type {
   RecipeCategory,
   WorkoutProgramId,
@@ -25,50 +23,35 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { appData as initialAppData } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 
-// Affichage du composant d'animation
-<AnimatedButton />;
-
-// Définition des options dynamiques pour les modaux
-const modalOptions = {
-  suspense: true,
-  loading: () => <Skeleton className="w-full h-96" />
-};
-
 // Lazy load all modals avec les bonnes pratiques
 const WorkoutDetailModal = dynamic(
   () => import('@/components/modals/WorkoutDetailModal'),
-  modalOptions
+  {
+    loading: () => <Skeleton className="w-full h-96" />
+  }
 );
 const ExerciseDetailModal = dynamic(() => import('@/components/modals/ExerciseDetailModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const NutritionDetailModal = dynamic(() => import('@/components/modals/NutritionDetailModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const RecipeDetailModal = dynamic(() => import('@/components/modals/RecipeDetailModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const WaterTrackerModal = dynamic(() => import('@/components/modals/WaterTrackerModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const MentalWellnessModal = dynamic(() => import('@/components/modals/MentalWellnessModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const MentalExerciseDetailModal = dynamic(() => import('@/components/modals/MentalExerciseDetailModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const PersonalizedAnalysis = dynamic(() => import('@/components/dashboard/PersonalizedAnalysis'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 const HealthConnectModal = dynamic(() => import('@/components/modals/HealthConnectModal'), {
-  suspense: true,
   loading: () => <Skeleton className="w-full h-96" />
 });
 
@@ -286,5 +269,3 @@ export default function Home() {
     </main>
   );
 }
-
-    

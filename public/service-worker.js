@@ -1,63 +1,63 @@
-const CACHE_NAME = 'yourcoachai-cache-v1';
-const urlsToCache = [
+const CACHE_NAME = 'yourcoachai-cache-v2';
+const PRECACHE_URLS = [
   '/',
   '/manifest.json',
   '/favicon.ico',
-  // Add other important assets here. 
-  // Be careful not to cache too much, especially large files.
+  '/offline.html',
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
   );
 });
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          response => {
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      })
-    );
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys.map((key) => (key !== CACHE_NAME ? caches.delete(key) : undefined))
+        )
+      )
+      .then(() => self.clients.claim())
+  );
 });
 
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+
+      return fetch(event.request)
+        .then((response) => {
+          const shouldCache =
+            response &&
+            response.status === 200 &&
+            (response.type === 'basic' || response.type === 'default');
+
+          if (shouldCache) {
+            const responseToCache = response.clone();
+            caches
+              .open(CACHE_NAME)
+              .then((cache) => cache.put(event.request, responseToCache));
           }
+
+          return response;
         })
-      );
+        .catch(() => {
+          // Offline fallback for navigation requests (HTML pages)
+          if (
+            event.request.mode === 'navigate' ||
+            (event.request.headers.get('accept') || '').includes('text/html')
+          ) {
+            return caches.match('/offline.html');
+          }
+        });
     })
   );
 });
